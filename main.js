@@ -1,7 +1,8 @@
 import './style.css'
 import AgoraRTC from "agora-rtc-sdk-ng"
+import APPID from './env.js'
 
-const appid = process.env.APPID
+
 
 const token = null
 const rtcUid = Math.floor(Math.random() * 2032)
@@ -25,7 +26,7 @@ const initRtc = async () => {
   rtcClient.on("user-left", handleUserLeft);
   
 
-  await rtcClient.join(appid, roomId, token, rtcUid)
+  await rtcClient.join(APPID, roomId, token, rtcUid)
   audioTracks.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
   await rtcClient.publish(audioTracks.localAudioTrack);
 
