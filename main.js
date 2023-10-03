@@ -97,6 +97,21 @@ const enterRoom = async (e) => {
   document.getElementById('room-header').style.display = "flex"
 }
 
+// toggle mic mute/unmute functionality
+const toggleMic = async (e) => {
+  if (micMuted){
+    e.target.src = 'icons/mic.svg'
+    e.target.style.backgroundColor = 'ivory'
+    micMuted = false
+  }else{
+    e.target.src = 'icons/mic-off.svg'
+    e.target.style.backgroundColor = 'indianred'
+    
+    micMuted = true
+  }
+  audioTracks.localAudioTrack.setMuted(micMuted)
+}
+
 let leaveRoom = async () => {
   audioTracks.localAudioTrack.stop()
   audioTracks.localAudioTrack.close()
@@ -110,3 +125,4 @@ let leaveRoom = async () => {
 
 lobbyForm.addEventListener('submit', enterRoom)
 document.getElementById('leave-icon').addEventListener('click', leaveRoom)
+document.getElementById('mic-icon').addEventListener('click', toggleMic)
